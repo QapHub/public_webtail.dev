@@ -29,3 +29,20 @@ It’s designed as a quick alternative to **WinTail**, PowerShell / Bash tail co
 
     Open index.html in any modern browser
     ⚠️ Firefox is currently unsupported.
+
+
+   ##Usage
+
+Open index.html
+
+Select a log file from your local machine
+
+The tool will display updates as the file grows (similar to tail -f)
+
+##Why WebTail?
+
+Quick alternative to installing heavy tools
+
+Great for situations where you just need a fast log tail without terminal commands
+
+Works offline and runs anywhere a browser does
