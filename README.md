@@ -16,33 +16,36 @@ It’s designed as a quick alternative to **WinTail**, PowerShell / Bash tail co
 
 ## Installation / Setup
 1. Download or clone this repo:  
-   bash
+   ```bash
    git clone https://github.com/QapHub/public_webtail.dev.git
+   ```
 
-    Copy these three files into any folder:
+2. Copy these three files into any folder:  
+   - `index.html`  
+   - `styles.css`  
+   - `app.js`
 
-        index.html
+3. Open `index.html` in **any modern browser**  
+   ⚠️ Firefox is currently unsupported.
 
-        styles.css
+---
 
-        app.js
+## Usage
+- Open `index.html`  
+- Select a log file from your local machine  
+- The tool will display updates as the file grows (similar to `tail -f`)  
 
-    Open index.html in any modern browser
-    ⚠️ Firefox is currently unsupported.
+---
 
+## Why WebTail?
+- Quick alternative to installing heavy tools  
+- Great for situations where you just need a fast log tail without terminal commands  
+- Works offline and runs anywhere a browser does  
 
-   ##Usage
+---
 
-Open index.html
+## Links
+- 🌐 Website: [webtail.dev](https://webtail.dev)  
+- 📂 GitHub (offline version): [public_webtail.dev](https://github.com/QapHub/public_webtail.dev/tree/main)
 
-Select a log file from your local machine
-
-The tool will display updates as the file grows (similar to tail -f)
-
-##Why WebTail?
-
-Quick alternative to installing heavy tools
-
-Great for situations where you just need a fast log tail without terminal commands
-
-Works offline and runs anywhere a browser does
+---
