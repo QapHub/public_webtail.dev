@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+
+  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WebTail.dev — Tail logs in your browser (WinTail alternative, no download)</title>
+
+
+
+
+
+  <!-- Canonical & robots -->
+  <link rel="canonical" href="https://webtail.dev/" />
+
+
+
+
+
+
+
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "WebTail.dev",
+    "url": "https://webtail.dev/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "description": "Tail and filter local log files in your browser. Regex, timestamps, and highlights. Privacy-first WinTail alternative—no upload, no install.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "keywords": "webtail, webtail.dev, live log tail, wintail alternative, log viewer, regex filter, highlight errors, file system access api, no upload"
+  }
+  </script>
+
+
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="brand">
+      <h1>WebTail.dev <span class="badge"><font color="white">No Upload · Browser-Only</font></span></h1>
+      <div class="sub">Tail and filter local log files in your browser. Regex · Highlights · Timestamps.</div>
+    </div>
+    <div class="actions">
+      <nav class="toplinks"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></nav>
+      <label class="sub" for="theme">Theme</label>
+      <select id="theme" class="btn" aria-label="Theme selector">
+        <option value="light" selected>Light</option>
+        <option value="dark">Dark</option>
+        <option value="tron">TRON</option>
+        <option value="retro">Green Phosphor</option>
+        <option value="solarized">Solarized</option>
+        <option value="ocean">Ocean</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- Firefox banner -->
+  <div id="ffBanner" class="banner warn" style="display:none">
+    Heads up: Firefox does not support the required File System Access features. Please use Chrome, Edge, Brave, or other Chromium-based browsers.
+  </div>
+
+  <!-- Drop + Buttons -->
+  <div class="topbar">
+    <div id="dropzone" class="dropzone" tabindex="0" title="Drop a log file or click to choose">
+      <div class="dz-title">Drop a log file here</div>
+      <div class="dz-sub">…or click to choose. For continuous tailing, prefer <em>Open with File Access</em>.</div>
+    </div>
+    <div class="btnbar" role="group" aria-label="File actions">
+      <button id="btnPick" class="btn primary">Open with File Access</button>
+      <button id="btnPickOnce" class="btn">Quick Open</button>
+      <button id="btnPause" class="btn warn" disabled>Pause</button>
+      <button id="btnResume" class="btn good" disabled>Resume</button>
+      <button id="btnClear" class="btn" disabled>Clear</button>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="wrap">
+    <!-- Sidebar -->
+    <aside>
+      <div class="row">
+        <label><input type="checkbox" id="chkFollow" checked> Auto-scroll</label>
+        <label><input type="checkbox" id="chkWrap" checked> Soft-wrap</label>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <label>Max lines <input type="number" id="maxLines" min="200" max="200000" step="200" value="5000" class="num"></label>
+      </div>
+      <details style="margin-top:12px">
+        <summary>About this tool</summary>
+        <p><strong>WebTail.dev</strong> opens a local log file and displays updates live, with regex filtering and highlights. It never uploads your file; everything runs locally.</p>
+        <ul>
+          <li>Regex filter with in-line highlights</li>
+          <li>Timestamps, line numbers, auto-scroll</li>
+          <li>Rotation detection and basic rate stats</li>
+        </ul>
+      </details>
+
+     
+
+      <footer class="sidefooter">
+        Privacy-first: your file never leaves your device. · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a>
+      </footer>
+    </aside>
+
+    <!-- Main -->
+    <main>
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <input id="search" type="text" placeholder="Filter (regex ok). Example: error|warn|timeout" />
+          <span class="chip" id="statLines">0 lines</span>
+          <span class="chip" id="statRate">0 B/s</span>
+        </div>
+        <div class="toolbar-right">
+          <span class="kvchip"><b>File:</b> <span id="metaName">—</span></span>
+          <span class="kvchip"><b>Size:</b> <span id="metaSize">—</span></span>
+          <span class="kvchip"><b>Position:</b> <span id="metaPos">—</span></span>
+          <span class="kvchip"><b>Status:</b> <span id="metaStatus">Idle</span></span>
+          <span class="kvchip"><b>FS:</b> <span id="metaFS">—</span></span>
+          <span class="hide-sm" style="color:var(--muted); font-size:14px">No upload • Runs locally</span>
+        </div>
+      </div>
+      <div id="log" class="log" aria-live="polite" aria-atomic="false"></div>
+    </main>
+  </div>
+
+  <input id="hiddenFile" type="file" style="display:none" />
+
+
+  <noscript>
+    <div class="noscript">JavaScript is required to live-tail logs. Please enable JavaScript or use a modern browser.</div>
+  </noscript>
+
+  <script src="app.js"></script>
+  <script>
+    // Firefox-only banner
+    (function(){
+      var isFirefox = /firefox/i.test(navigator.userAgent);
+      if (isFirefox) {
+        var b = document.getElementById('ffBanner');
+        if (b) b.style.display = 'block';
+      }
+    })();
+  </script>
+</body>
+</html>
